@@ -34,7 +34,7 @@ public class CalendarCollectorController {
 			HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 		List<Holiday> holidays = Arrays.asList(objectMapper.readValue(response.body(), Holiday[].class));
 		List<LocalDate> dates =
-			holidays.stream().filter(h -> h.counties==null || h.counties.contains("CH-ZH"))
+			holidays.stream().filter(h -> h.counties==null || h.counties.size()==0 || h.counties.contains("CH-ZH"))
 				.map(h -> h.date).collect(Collectors.toList());
 		return objectMapper.writeValueAsString(dates);
 	}

@@ -11,7 +11,7 @@ class Cache(var start: LocalDate, var end: LocalDate) {
         bitSet.set(offset(start, day))
     }
 
-    fun getDay(day: LocalDate) : Boolean {
+    fun getDay(day: LocalDate): Boolean {
         return bitSet[offset(start, day)]
     }
 

@@ -10,11 +10,11 @@ class CacheService {
         cache.setDay(day)
     }
 
-    fun getDay(day: LocalDate) : Boolean {
+    fun getDay(day: LocalDate): Boolean {
         return cache.getDay(day)
     }
 
-    fun getCache() : Cache {
+    fun getCache(): Cache {
         return cache
     }
 }

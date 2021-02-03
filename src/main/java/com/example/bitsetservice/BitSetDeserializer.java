@@ -1,3 +1,5 @@
+package com.example.bitsetservice;
+
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.JsonToken;
@@ -9,22 +11,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.BitSet;
 
-public class BitSetDeserializer extends JsonDeserializer<BitSet>
-    {
-      @Override
-      public BitSet deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
-          throws IOException, JsonProcessingException
-      {
+public class BitSetDeserializer extends JsonDeserializer<BitSet> {
+    @Override
+    public BitSet deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
+            throws IOException, JsonProcessingException {
 
         ArrayList<Long> l = new ArrayList<Long>();
         JsonToken token;
-        while (!JsonToken.END_ARRAY.equals(token = jsonParser.nextValue()))
-        {
-          if (token.isNumeric())
-          {
-            l.add(jsonParser.getLongValue());
-          }
+        while (!JsonToken.END_ARRAY.equals(token = jsonParser.nextValue())) {
+            if (token.isNumeric()) {
+                l.add(jsonParser.getLongValue());
+            }
         }
         return BitSet.valueOf(Longs.toArray(l));
-      }
     }
+}

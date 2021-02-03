@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class BitSetApplication
 
 fun main(args: Array<String>) {
-	runApplication<BitSetApplication>(*args)
+    runApplication<BitSetApplication>(*args)
 }

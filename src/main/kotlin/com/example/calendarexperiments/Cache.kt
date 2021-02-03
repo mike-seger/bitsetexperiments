@@ -1,4 +1,4 @@
-package com.example.bitsetexperiments
+package com.example.calendarexperiments
 
 import java.time.Duration
 import java.time.LocalDate

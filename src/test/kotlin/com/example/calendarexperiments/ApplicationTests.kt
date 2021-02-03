@@ -1,10 +1,10 @@
-package com.example.bitsetexperiments
+package com.example.calendarexperiments
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class BitSetApplicationTests {
+class ApplicationTests {
 
 	@Test
 	fun contextLoads() {

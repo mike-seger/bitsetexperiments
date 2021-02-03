@@ -1,4 +1,4 @@
-package com.example.bitsetexperiments
+package com.example.calendarexperiments
 
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDate

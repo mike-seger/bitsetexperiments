@@ -1,4 +1,4 @@
-package com.example.bitsetexperiments
+package com.example.calendarexperiments
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

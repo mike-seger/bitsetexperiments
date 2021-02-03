@@ -1,4 +1,4 @@
-package com.example.bitsetexperiments;
+package com.example.bitsetexperiments.jackson;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,10 +13,8 @@ import java.util.BitSet;
 
 public class BitSetDeserializer extends JsonDeserializer<BitSet> {
     @Override
-    public BitSet deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
-            throws IOException, JsonProcessingException {
-
-        ArrayList<Long> l = new ArrayList<Long>();
+    public BitSet deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
+        ArrayList<Long> l = new ArrayList<>();
         JsonToken token;
         while (!JsonToken.END_ARRAY.equals(token = jsonParser.nextValue())) {
             if (token.isNumeric()) {

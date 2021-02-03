@@ -1,4 +1,4 @@
-package com.example.bitsetservice;
+package com.example.bitsetexperiments;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

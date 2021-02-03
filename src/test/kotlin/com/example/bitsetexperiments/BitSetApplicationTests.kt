@@ -1,4 +1,4 @@
-package com.example.bitsetservice
+package com.example.bitsetexperiments
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

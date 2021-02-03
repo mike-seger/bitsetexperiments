@@ -1,4 +1,4 @@
-package com.example.bitsetservice;
+package com.example.bitsetexperiments;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;

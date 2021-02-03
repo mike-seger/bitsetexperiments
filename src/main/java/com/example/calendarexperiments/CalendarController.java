@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("ext-api")
-public class CalendarCollectorController {
+public class CalendarController {
 	private final ObjectMapper objectMapper=new ObjectMapper().registerModule(new JavaTimeModule());
 
 	@GetMapping("/public-holidays/{year}/{country}")

@@ -2,6 +2,7 @@ package com.example.calendarexperiments;
 
 import com.example.calendarexperiments.jackson.CustomConfiguration;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -10,16 +11,29 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 @Service
 public class CalendarService {
 	private final CustomConfiguration.CustomObjectMapper objectMapper;
-	public CalendarService(CustomConfiguration.CustomObjectMapper objectMapper) {
+	private final TreeSet<LocalDateTime> publicHolidays = new TreeSet<>();
+	public CalendarService(AppConfig appConfig, CustomConfiguration.CustomObjectMapper objectMapper) {
 		this.objectMapper = objectMapper;
+		init(appConfig.calendarService);
+	}
+
+	private void init(AppConfig.CalendarService config) {
+		CollectionType javaType = objectMapper.getTypeFactory()
+			.constructCollectionType(List.class, LocalDateTime.class);
+		for(String location : config.publicHolidays) {
+			List<> readPublicHolidays = objectMapper.readValue(getClass().getResourceAsStream(location), javaType);
+			publicHolidays.addAll(readPublicHolidays);
+		}
 	}
 
 	public List<LocalDate> getHolidaysList(int year, String country) throws IOException, InterruptedException {
@@ -32,7 +46,7 @@ public class CalendarService {
 		HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 		List<Holiday> holidays = Arrays.asList(objectMapper.readValue(response.body(), Holiday[].class));
 		return holidays.stream().filter(h -> h.counties==null || h.counties.contains("CH-ZH"))
-				.map(h -> h.date).collect(Collectors.toList());
+			.map(h -> h.date).collect(Collectors.toList());
 	}
 
 	@JsonIgnoreProperties(ignoreUnknown = true)

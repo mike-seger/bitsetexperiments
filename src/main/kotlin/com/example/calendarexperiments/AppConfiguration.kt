@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 @ConfigurationProperties("app")
-data class AppConfig (var calendarService: CalendarServiceConfig) {
+data class AppConfiguration (var calendarService: CalendarServiceConfig) {
     @Configuration
     data class CalendarServiceConfig (var publicHolidays: List<String>)
 }

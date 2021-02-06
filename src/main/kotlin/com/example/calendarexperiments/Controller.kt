@@ -1,6 +1,6 @@
 package com.example.calendarexperiments
 
-import com.example.calendarexperiments.jackson.CustomConfiguration.CustomObjectMapper
+import com.example.calendarexperiments.CustomConfiguration.CustomObjectMapper
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -10,12 +10,12 @@ import java.time.LocalDate
 
 @RestController
 @RequestMapping("ext-api")
-class CalendarController(private val objectMapper: CustomObjectMapper, private val calendarService: CalendarService) {
+class Controller(private val objectMapper: CustomObjectMapper, private val service: Service) {
     @GetMapping("/public-holidays/{year}/{country}")
     @Throws(IOException::class, InterruptedException::class)
     fun getHolidays(@PathVariable year: Int, @PathVariable country: String?): String {
         return objectMapper.writeValueAsString(
-            calendarService.getHolidays(year, country!!)
+            service.getHolidays(year, country!!)
         )
     }
 
@@ -26,7 +26,7 @@ class CalendarController(private val objectMapper: CustomObjectMapper, private v
         @PathVariable endYear: Int,
         @PathVariable country: String?
     ): String {
-        return objectMapper.writeValueAsString(calendarService.getHolidays(startYear, endYear, country!!))
+        return objectMapper.writeValueAsString(service.getHolidays(startYear, endYear, country!!))
     }
 
     @GetMapping("/public-holiday/{date}/{country}")
@@ -35,6 +35,6 @@ class CalendarController(private val objectMapper: CustomObjectMapper, private v
         @PathVariable date: LocalDate?,
         @PathVariable country: String?
     ): String {
-        return objectMapper.writeValueAsString(calendarService.isPublicHoliday(date!!, country))
+        return objectMapper.writeValueAsString(service.isPublicHoliday(date!!, country))
     }
 }

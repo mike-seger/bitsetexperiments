@@ -5,7 +5,7 @@ import java.time.LocalDate
 
 @RestController
 @RequestMapping("bitset")
-class Controller(var cacheService: CacheService) {
+class CacheController(var cacheService: CacheService) {
     @GetMapping("/cache")
     fun cache(): Cache {
         return cacheService.getCache()

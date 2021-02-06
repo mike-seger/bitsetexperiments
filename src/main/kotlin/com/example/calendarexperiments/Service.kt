@@ -1,10 +1,9 @@
 package com.example.calendarexperiments
 
-import com.example.calendarexperiments.AppConfig.CalendarServiceConfig
-import com.example.calendarexperiments.jackson.CustomConfiguration.CustomObjectMapper
+import com.example.calendarexperiments.AppConfiguration.CalendarServiceConfig
+import com.example.calendarexperiments.CustomConfiguration.CustomObjectMapper
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.slf4j.LoggerFactory
-import org.springframework.stereotype.Service
 import java.io.IOException
 import java.net.URI
 import java.net.http.HttpClient
@@ -15,9 +14,9 @@ import java.util.*
 import java.util.function.Consumer
 import java.util.stream.Collectors
 
-@Service
-class CalendarService(appConfig: AppConfig, private val objectMapper: CustomObjectMapper) {
-    private val logger = LoggerFactory.getLogger(CalendarService::class.java)
+@org.springframework.stereotype.Service
+class Service(appConfig: AppConfiguration, private val objectMapper: CustomObjectMapper) {
+    private val logger = LoggerFactory.getLogger(Service::class.java)
     private val publicHolidayYearSets: MutableMap<Int, SortedSet<LocalDate>> = HashMap()
     @Throws(IOException::class)
     private fun init(config: CalendarServiceConfig) {

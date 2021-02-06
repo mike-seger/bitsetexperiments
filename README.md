@@ -8,12 +8,12 @@ as its source.
 
 Currently, it only works correctly for country CH / county CH-ZH.
 
-# Build and run
+## Build and run
 ```
 gradle bootRun
 ```
 
-# Use
+## Use
 ```
 # single
 curl -s "http://localhost:8080/ext-api/public-holiday/2018-08-01/CH"
@@ -25,8 +25,10 @@ curl -s "http://localhost:8080/ext-api/public-holidays/2018/CH"
 curl -s "http://localhost:8080/ext-api/public-holidays/2014/2018/CH"
 ```
 
-# External APIs
+## External APIs
 ```
+# jq must be installed!!!
+
 # SIX
 function download_six() {
 	for y in {2012..2022} ; do 

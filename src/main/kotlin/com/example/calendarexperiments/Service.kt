@@ -1,7 +1,6 @@
 package com.example.calendarexperiments
 
 import com.example.calendarexperiments.AppConfiguration.CalendarServiceConfig
-import com.example.calendarexperiments.CustomConfiguration.CustomObjectMapper
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.slf4j.LoggerFactory
 import java.io.IOException
@@ -18,6 +17,7 @@ import java.util.stream.Collectors
 class Service(appConfig: AppConfiguration, private val objectMapper: CustomObjectMapper) {
     private val logger = LoggerFactory.getLogger(Service::class.java)
     private val publicHolidayYearSets: MutableMap<Int, SortedSet<LocalDate>> = HashMap()
+
     @Throws(IOException::class)
     private fun init(config: CalendarServiceConfig) {
         val javaType = objectMapper.typeFactory
@@ -36,7 +36,7 @@ class Service(appConfig: AppConfiguration, private val objectMapper: CustomObjec
         })
     }
 
-    fun isPublicHoliday(date: LocalDate, country: String?): Boolean {
+    fun isPublicHoliday(date: LocalDate, country: String): Boolean {
         val dates = publicHolidayYearSets[date.year] ?: return false
         return dates.contains(date)
     }

@@ -2,6 +2,7 @@ package com.example.calendarexperiments
 
 import com.example.calendarexperiments.AppConfiguration.CalendarServiceConfig
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import org.itadaki.bzip2.BZip2InputStream
 import org.slf4j.LoggerFactory
 import java.io.IOException
 import java.net.URI
@@ -25,7 +26,9 @@ class Service(appConfig: AppConfiguration, private val objectMapper: CustomObjec
         val publicHolidays: MutableSet<LocalDate> = TreeSet()
         for (location in config.publicHolidays) {
             val readPublicHolidays = objectMapper.readValue<List<LocalDate>>(
-                javaClass.getResourceAsStream(location), javaType
+                if (location.endsWith(".bz2")) BZip2InputStream(javaClass.getResourceAsStream(location), false)
+                else BZip2InputStream(javaClass.getResourceAsStream(location), false),
+                javaType
             )
             publicHolidays.addAll(readPublicHolidays)
             logger.info("Read {} public holidays from {}", readPublicHolidays.size, location)

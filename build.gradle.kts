@@ -22,6 +22,8 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("net.minidev:json-smart:2.3")
 	implementation("com.google.guava:guava:30.1-jre")
+	implementation("org.itadaki:bzip2:0.9.1")
+	//implementation("org.apache.commons:commons-compress:1.20")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

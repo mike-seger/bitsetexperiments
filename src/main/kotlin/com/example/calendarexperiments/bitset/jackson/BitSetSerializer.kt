@@ -1,4 +1,4 @@
-package com.example.calendarexperiments.jackson
+package com.example.calendarexperiments.bitset.jackson
 
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.JsonSerializer

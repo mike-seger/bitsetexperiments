@@ -1,10 +1,10 @@
-package com.example.calendarexperiments
+package com.example.calendarexperiments.bitset
 
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDate
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("bitset")
 class Controller(var cacheService: CacheService) {
     @GetMapping("/cache")
     fun cache(): Cache {

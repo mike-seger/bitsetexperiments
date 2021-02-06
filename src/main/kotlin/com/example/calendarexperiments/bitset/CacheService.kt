@@ -1,4 +1,4 @@
-package com.example.calendarexperiments
+package com.example.calendarexperiments.bitset
 
 import org.springframework.stereotype.Service
 import java.time.LocalDate

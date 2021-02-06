@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 @RestController
 @RequestMapping("ext-api")
@@ -26,17 +23,18 @@ public class CalendarController {
 	@GetMapping("/public-holidays/{year}/{country}")
 	public String getHolidays(@PathVariable int year, @PathVariable String country) throws IOException, InterruptedException {
 		return objectMapper.writeValueAsString(
-			calendarService.getHolidaysList(year, country));
+			calendarService.getHolidays(year, country));
+	}
+
+	@GetMapping("/public-holiday/{date}/{country}")
+	public String isHoliday(@PathVariable LocalDate date,
+			  @PathVariable String country) throws IOException {
+		return objectMapper.writeValueAsString(calendarService.isPublicHoliday(date, country));
 	}
 
 	@GetMapping("/public-holidays/{startYear}/{endYear}/{country}")
 	public String getHolidays(@PathVariable int startYear, @PathVariable int endYear,
               @PathVariable String country) throws IOException, InterruptedException {
-		List<LocalDate> dates = new ArrayList<>();
-		for(int year=startYear; year<=endYear; year++) {
-			dates.addAll(calendarService.getHolidaysList(year, country));
-		}
-		Collections.sort(dates);
-		return objectMapper.writeValueAsString(dates);
+		return objectMapper.writeValueAsString(calendarService.getHolidays(startYear, endYear, country));
 	}
 }

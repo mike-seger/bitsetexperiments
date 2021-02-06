@@ -1,7 +1,7 @@
 app:
   calendar-service:
     public-holidays:
-      - public-holidays-pre-2021.json
+      - /public-holidays-CH-ZH-pre-2021.json
 
 spring.mvc.format.date: yyyy-MM-dd
 spring.mvc.format.date-time: yyyy-MM-dd HH:mm:ss

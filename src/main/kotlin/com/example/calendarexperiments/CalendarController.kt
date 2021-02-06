@@ -19,15 +19,6 @@ class CalendarController(private val objectMapper: CustomObjectMapper, private v
         )
     }
 
-    @GetMapping("/public-holiday/{date}/{country}")
-    @Throws(IOException::class)
-    fun isHoliday(
-        @PathVariable date: LocalDate?,
-        @PathVariable country: String?
-    ): String {
-        return objectMapper.writeValueAsString(calendarService.isPublicHoliday(date!!, country))
-    }
-
     @GetMapping("/public-holidays/{startYear}/{endYear}/{country}")
     @Throws(IOException::class, InterruptedException::class)
     fun getHolidays(
@@ -36,5 +27,14 @@ class CalendarController(private val objectMapper: CustomObjectMapper, private v
         @PathVariable country: String?
     ): String {
         return objectMapper.writeValueAsString(calendarService.getHolidays(startYear, endYear, country!!))
+    }
+
+    @GetMapping("/public-holiday/{date}/{country}")
+    @Throws(IOException::class)
+    fun isHoliday(
+        @PathVariable date: LocalDate?,
+        @PathVariable country: String?
+    ): String {
+        return objectMapper.writeValueAsString(calendarService.isPublicHoliday(date!!, country))
     }
 }

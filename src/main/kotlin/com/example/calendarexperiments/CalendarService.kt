@@ -13,7 +13,6 @@ import java.net.http.HttpResponse
 import java.time.LocalDate
 import java.util.*
 import java.util.function.Consumer
-import java.util.function.Supplier
 import java.util.stream.Collectors
 
 @Service
@@ -33,7 +32,7 @@ class CalendarService(appConfig: AppConfig, private val objectMapper: CustomObje
             logger.info("Read {} public holidays from {}", readPublicHolidays.size, location)
         }
         publicHolidays.forEach(Consumer { d: LocalDate ->
-            publicHolidayYearSets.computeIfAbsent(d.year) { k: Int? -> TreeSet() }
+            publicHolidayYearSets.computeIfAbsent(d.year) { TreeSet() }
                 .add(d)
         })
     }
@@ -55,11 +54,10 @@ class CalendarService(appConfig: AppConfig, private val objectMapper: CustomObje
             .method("GET", HttpRequest.BodyPublishers.noBody())
             .build()
         val response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString())
-        val holidays = Arrays.asList(*objectMapper.readValue(response.body(), Array<Holiday>::class.java))
+        val holidays = listOf(*objectMapper.readValue(response.body(), Array<Holiday>::class.java))
         return holidays.stream().filter { h: Holiday -> h.counties == null || h.counties!!.contains("CH-ZH") }
             .map { h: Holiday -> h.date }.collect(
-                Collectors.toCollection(
-                    Supplier { TreeSet() })
+                Collectors.toCollection { TreeSet() }
             )
     }
 

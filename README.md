@@ -14,6 +14,7 @@ gradle bootRun
 ```
 
 ## Use
+## curl
 ```
 # single
 curl -s "http://localhost:8080/ext-api/public-holiday/2018-08-01/CH"
@@ -24,6 +25,9 @@ curl -s "http://localhost:8080/ext-api/public-holidays/2018/CH"
 # year range
 curl -s "http://localhost:8080/ext-api/public-holidays/2014/2018/CH"
 ```
+
+## swagger
+http://localhost:8080/swagger-ui.html
 
 ## External APIs
 ```

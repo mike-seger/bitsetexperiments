@@ -2,6 +2,7 @@ package com.example.calendarexperiments
 
 import com.example.calendarexperiments.AppConfiguration.CalendarServiceConfig
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.itadaki.bzip2.BZip2InputStream
 import org.slf4j.LoggerFactory
 import java.io.IOException
@@ -15,7 +16,7 @@ import java.util.function.Consumer
 import java.util.stream.Collectors
 
 @org.springframework.stereotype.Service
-class Service(appConfig: AppConfiguration, private val objectMapper: CustomObjectMapper) {
+class Service(appConfig: AppConfiguration, private val objectMapper: ObjectMapper) {
     private val logger = LoggerFactory.getLogger(Service::class.java)
     private val publicHolidayYearSets: MutableMap<Int, SortedSet<LocalDate>> = HashMap()
 

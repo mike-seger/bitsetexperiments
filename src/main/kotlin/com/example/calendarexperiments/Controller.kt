@@ -14,7 +14,7 @@ import java.util.*
 
 @RestController
 @RequestMapping("ext-api")
-class Controller(private val objectMapper: CustomObjectMapper, private val service: Service) {
+class Controller(private val service: Service) {
 
     // Excerpt of James Baldwin "A Letter to my Nephew"
     private val speech = arrayOf(
